@@ -17,24 +17,28 @@
        ```       
   * Documentation and Endpoints:
      - 
-       Now you are be able to see the Swagger documentation about REST API
-       ```
-       http://localhost:8081/swagger-ui.html#/profiles-controller
-       ```
-       Also you can see the profiles view, for example
-       ```
-       http://localhost:8081/view-profiles?id=2
-       ```       
+ ![Principal Screen](Assets/Swagger.jpg)
+
+   Now you are be able to see the Swagger documentation about REST API
+       
+   ```
+   http://localhost:8081/swagger-ui.html#/profiles-controller
+   ```
+   Also you can see the profiles view, for example
+       
+   ```
+   http://localhost:8081/view-profiles?id=2
+   ```       
 
  * Technologies:
     - 
-    + FrontEnd
+  ![Principal Screen](Assets/DDD_model.jpg)   
     
+  + FrontEnd
         It's a simple html view based on Jquery and  Bootstrap
         
-    + BackEnd
-    
-        It's a RestFull API developed with Java 8, using SpringBoot framework, JPA-Hibernate for MySql repository.
+  + BackEnd
+  It's a RestFull API developed with Java 8, using SpringBoot framework, JPA-Hibernate for MySql repository.
         For the Twitter API integration Twitter4j Library and Swagger 2 for the documentation.
         
       
