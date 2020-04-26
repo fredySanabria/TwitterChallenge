@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+	function printList(json){
+		var html = "<h2>Tweets</h2> <br>" + '<ul>';
+		for (var n in json) { // Each top-level entry
+			html += '<li>' + json[n].text + '</li>';
+		}
+		html += '</ul>';
+		$("#tweets").append(html);
+	}
+	function getId(){
+		var url = window.location.href;
+		var captured = /id=([^&]+)/.exec(url)[1];
+		return captured ? captured : '4';}
+
+	$(document).ready(
+			function() {
+				$.getJSON("http://localhost:8081/profiles/"+getId(), function(result) {
+					$.each(result, function(key, value) {
+						if(key === 'twitterList'){
+							printList(value);
+						} else {
+							$("#photo").append("<img src='"+value.imageUrl+"' style='width:50%' class='img-circle'>");
+							$("#title").append("<h2>"+value.title+"</h2>");
+							$("#description").append("<p>"+value.description+"</p>");
+						}
+					});
+				});
+			});
+</script>
+</head>
+<body>
+
+<div class="container">
+    <div class="thumbnail" style="text-align: center"><H1>JAVA PROFILE APP</H1></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <div id="photo" class="thumbnail"></div>
+                <div id="tweets" class="caption">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <div id="title"></div>
+                <div id="description"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
