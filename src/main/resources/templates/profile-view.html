@@ -23,7 +23,7 @@
 
 	$(document).ready(
 			function() {
-				$.getJSON("http://localhost:8081/profiles/"+getId(), function(result) {
+				$.getJSON("http://localhost:5000/profiles/"+getId(), function(result) {
 					$.each(result, function(key, value) {
 						if(key === 'twitterList'){
 							printList(value);

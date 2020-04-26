@@ -22,14 +22,22 @@
    Now you are be able to see the Swagger documentation about REST API
        
    ```
-   http://localhost:8081/swagger-ui.html#/profiles-controller
+   http://localhost:5000/swagger-ui.html#/profiles-controller
    ```
    Also you can see the profiles view, for example
        
    ```
-   http://localhost:8081/view-profiles?id=2
+   http://localhost:5000/view-profiles?id=2
    ```       
+![Principal Screen](Assets/aws.jpg)
 
+  Also this app is running in my personal AWS service:
+  ```
+  http://twitterchallenge-env.eba-me6phegv.us-east-2.elasticbeanstalk.com/view-profiles?id=4
+  ```
+  ```
+  http://twitterchallenge-env.eba-me6phegv.us-east-2.elasticbeanstalk.com/profiles/4
+  ```
  * Technologies:
     - 
   ![Principal Screen](Assets/DDD_model.jpg)   
@@ -41,4 +49,10 @@
   It's a RestFull API developed with Java 8, using SpringBoot framework, JPA-Hibernate for MySql repository.
         For the Twitter API integration Twitter4j Library and Swagger 2 for the documentation.
         
-      
+ * Time taking:
+    - 
+    This is an estimated taken time in hours 
+  ![Principal Screen](Assets/Hours.jpg)   
+  ![Principal Screen](Assets/HoursTable.jpg)  
+    
+             
