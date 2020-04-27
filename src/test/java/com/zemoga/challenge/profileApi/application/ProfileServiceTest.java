@@ -12,7 +12,6 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import twitter4j.TwitterException;
 
@@ -67,7 +66,7 @@ public class ProfileServiceTest {
     }
 
     @Test()
-    public void GetTwitterListThrowsExceptionWhenListIsNull() throws TwitterException {
+    public void GetTwitterListThrowsExceptionWhenListIsNull(){
         Assertions.assertThrows(TwitterListNotFoundException.class, () -> {
             final String userName = "TestTwitterName";
             final int id = 4;

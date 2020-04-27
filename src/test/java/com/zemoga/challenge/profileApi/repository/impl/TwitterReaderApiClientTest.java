@@ -10,12 +10,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.ResponseList;
+import twitter4j.TwitterObjectFactory;
 import twitter4j.TwitterException;
-import twitter4j.json.DataObjectFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,19 +34,19 @@ class TwitterReaderApiClientTest {
     @InjectMocks
     TwitterReaderApiClient apiClient;
 
-    List<Status> statusList = new ArrayList<>();
+    final List<Status> statusList = new ArrayList<>();
     @BeforeEach
     void setUp() throws TwitterException {
 
-        Status status1 = DataObjectFactory.createStatus("{\n" +
+        Status status1 = TwitterObjectFactory.createStatus("{\n" +
                 "\t\"user\":{\"id\": 270673659},\n" +
                 "    \"text\": \"@BrutalTruth0 I’m assuming you had no Septa to teach you chivalry, for no true knight would speak to me thus.\"\n" +
                 "}");
-        Status status2 = DataObjectFactory.createStatus("{\n" +
+        Status status2 = TwitterObjectFactory.createStatus("{\n" +
                 "\t\"user\":{\"id\": 270673659},\n" +
                 "    \"text\": \"@BrutalTruth0 I’m assuming you had no Septa to teach you chivalry, for no true knight would speak to me thus.\"\n" +
                 "}");
-        Status status3 = DataObjectFactory.createStatus("{\n" +
+        Status status3 = TwitterObjectFactory.createStatus("{\n" +
                 "\t\"user\":{\"id\": 270673659},\n" +
                 "    \"text\": \"@BrutalTruth0 I’m assuming you had no Septa to teach you chivalry, for no true knight would speak to me thus.\"\n" +
                 "}");
@@ -58,7 +57,6 @@ class TwitterReaderApiClientTest {
 
     @Test
     void getTwitterListFromExistingName() throws TwitterException {
-
         when(twitter.getUserTimeline(anyString())).thenReturn(responseList);
         when(responseList.stream()).thenReturn(statusList.stream());
         List<TwitterDTO> twitterList = apiClient.getTwitterList("testName");

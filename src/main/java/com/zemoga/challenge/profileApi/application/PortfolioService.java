@@ -1,28 +1,26 @@
 package com.zemoga.challenge.profileApi.application;
 
 import com.zemoga.challenge.profileApi.application.DTO.PortfolioDTO;
-import com.zemoga.challenge.profileApi.application.DTO.Profile;
 import com.zemoga.challenge.profileApi.domain.Portfolio;
 import com.zemoga.challenge.profileApi.repository.PortfolioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class PortfolioService {
 
-    static Function<Portfolio, PortfolioDTO> mapToDto = portfolio -> PortfolioDTO.builder()
+    final static Function<Portfolio, PortfolioDTO> mapToDto = portfolio -> PortfolioDTO.builder()
             .id(portfolio.getId())
             .description(portfolio.getDescription())
             .imageUrl(portfolio.getImageUrl())
             .title(portfolio.getTitle())
             .twitterUserName(portfolio.getTwitterUserName())
             .build();
-    static Function<PortfolioDTO, Portfolio> mapToEntity = dto -> Portfolio.builder()
+    final static Function<PortfolioDTO, Portfolio> mapToEntity = dto -> Portfolio.builder()
             .id(dto.getId())
             .description(dto.getDescription())
             .imageUrl(dto.getImageUrl())
@@ -34,7 +32,7 @@ public class PortfolioService {
     private PortfolioRepository repository;
 
     public PortfolioDTO getPortfolio(int id) {
-        return Optional.ofNullable(repository.getOne(id)).isPresent() ? mapToDto.apply(repository.getOne(id)) : null;
+        return  mapToDto.apply(repository.getOne(id));
     }
 
     public List<PortfolioDTO> getAllPortfolios() {

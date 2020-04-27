@@ -20,14 +20,14 @@ public class ProfileService {
     @Autowired
     TwitterService twitterService;
 
-    public Profile getProfile(int id) throws TwitterException {
+    public Profile getProfile(int id){
         PortfolioDTO portfolio = portfolioService.getPortfolio(id);
         return mapToDto(portfolio);
     }
 
-    public List<Profile> findAllProfiles() throws TwitterException {
+    public List<Profile> findAllProfiles(){
         List<PortfolioDTO> portfolios = portfolioService.getAllPortfolios();
-        return portfolios.stream().map(item -> mapToDto(item))
+        return portfolios.stream().map(this::mapToDto)
                 .collect(Collectors.toList());
     }
 

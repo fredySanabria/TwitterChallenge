@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 @Service
 public class TwitterService {
-    private static Supplier<? extends RuntimeException> exceptionSupplier =
+    private final static Supplier<? extends RuntimeException> exceptionSupplier =
             () -> new TwitterListNotFoundException("No twitters found for this user", new Exception());
 
     @Autowired

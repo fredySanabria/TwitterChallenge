@@ -3,7 +3,6 @@ package com.zemoga.challenge.profileApi.rest_interface;
 import com.zemoga.challenge.profileApi.application.DTO.Profile;
 import com.zemoga.challenge.profileApi.application.ProfileService;
 import com.zemoga.challenge.profileApi.exception.ProfileNotFoundException;
-import com.zemoga.challenge.profileApi.exception.TwitterListNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,15 +22,9 @@ public class ProfilesController {
 
     @GetMapping(path = "/{id}")
     public Profile getProfile(@PathVariable Integer id){
-        Profile profileResult = null;
-        try {
-            profileResult = service.getProfile(id);
-            if(profileResult == null){
-                throw new ProfileNotFoundException(String.format("id {0} not found, please try with another", id) );
-            }
-        } catch (TwitterException e) {
-            log.error("Error consuming Twitter Api", e);
-            throw new TwitterListNotFoundException("Error consuming Twitter Api", e);
+        Profile profileResult = service.getProfile(id);
+        if(profileResult == null){
+            throw new ProfileNotFoundException(String.format("id %s not found, please try with another", id) );
         }
         return profileResult;
     }

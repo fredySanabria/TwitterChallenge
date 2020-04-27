@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class TwitterReaderApiClient implements TwitterReader {
     Twitter twitter = TwitterFactory.getSingleton();
-    private static Function<Status, TwitterDTO> mapToDto = item -> TwitterDTO.builder()
+    private final static Function<Status, TwitterDTO> mapToDto = item -> TwitterDTO.builder()
             .id(item.getUser().getId())
             .text(item.getText())
             .build();
@@ -28,7 +28,7 @@ public class TwitterReaderApiClient implements TwitterReader {
     private List<TwitterDTO> getTimeLine(String screenName) throws TwitterException {
         return twitter.getUserTimeline(screenName)
                 .stream()
-                .map(item -> mapToDto.apply(item))
+                .map(mapToDto::apply)
                 .limit(5)
                 .collect(Collectors.toList());
     }

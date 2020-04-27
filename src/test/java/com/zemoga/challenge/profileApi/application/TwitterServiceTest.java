@@ -50,7 +50,7 @@ public class TwitterServiceTest {
     }
 
     @Test()
-    public void GetTwitterListThrowsExceptionWhenListIsNull() throws TwitterException {
+    public void GetTwitterListThrowsExceptionWhenListIsNull(){
         Assertions.assertThrows(TwitterListNotFoundException.class, () -> {
             final String userName = "TestTwitterName";
             when(reader.getTwitterList(anyString())).thenReturn(null);
